@@ -1,5 +1,6 @@
 import useFormulario from "./hooks/useFormulario.js";
-import Input from "./components/Input.css";
+//Tenias importado Input.css que no tiene propiedades
+import Input from "./components/Input";
 import Card from "./components/Card";
 import Container from "./components/Container";
 import Button from "./components/Button";
