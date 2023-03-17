@@ -1,45 +1,32 @@
-import useFormulario from "./hooks/useFormulario.js";
+import { useState } from "react";
 //Tenias importado Input.css que no tiene propiedades
-import Input from "./components/Input";
 import Card from "./components/Card";
 import Container from "./components/Container";
-import Button from "./components/Button";
+import UserForm from "./components/UserForm";
 
 function App() {
-  const [formulario, handleChange] = useFormulario({
-    name: "",
-    lastname: "",
-    email: " ",
-  });
+  const [usuarios, setUsuarios] = useState([]);
+
+  const submit = (usuario) => {
+    setUsuarios([...usuarios, usuario]);
+  };
 
   return (
-    <Container>
-      <Card>
-        <div style={{ padding: 20 }}>
-          <form>
-            <Input
-              label="Nombre"
-              name="name"
-              value={formulario.name}
-              onChange={handleChange}
-            />
-            <Input
-              label="Apellido"
-              name="lastname"
-              value={formulario.lastname}
-              onChange={handleChange}
-            />
-            <Input
-              label="Correo"
-              name="email"
-              value={formulario.email}
-              onChange={handleChange}
-            />
-            <Button>Enviar</Button>
-          </form>
-        </div>
-      </Card>
-    </Container>
+    <div style={{ marginTop: "15%" }}>
+      <Container>
+        <Card>
+          <div style={{ padding: 20 }}></div>
+          <UserForm submit={submit} />
+        </Card>
+        <Card>
+          <ul>
+            {usuarios.map((x) => (
+              <li key={x.email}>{`${x.name} ${x.lastname}: ${x.email}`}</li>
+            ))}
+          </ul>
+        </Card>
+      </Container>
+    </div>
   );
 }
 
